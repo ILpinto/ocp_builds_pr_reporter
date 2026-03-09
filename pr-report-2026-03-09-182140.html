@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .metric {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        .metric-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .status-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .status-item {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        .pr-title {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .pr-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .pr-link:hover {
+            text-decoration: underline;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .badge-draft {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .badge-approved {
+            background-color: #27ae60;
+            color: white;
+        }
+        .badge-changes {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .badge-review-requested {
+            background-color: #f39c12;
+            color: white;
+        }
+        .badge-no-review {
+            background-color: #bdc3c7;
+            color: #2c3e50;
+        }
+        .badge-no-reviewers {
+            background-color: #e67e22;
+            color: white;
+        }
+        .stale {
+            background-color: #fff9e6;
+        }
+        .very-stale {
+            background-color: #ffe6e6;
+        }
+        .age-warning {
+            color: #e67e22;
+            font-weight: 500;
+        }
+        .age-danger {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        .empty-state-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 GitHub Pull Requests Daily Report</h1>
+        <p style="color: #7f8c8d; margin-bottom: 25px;">
+            Generated on March 09, 2026 at 06:21 PM
+        </p>
+
+        
+        <h2>Summary</h2>
+        <div class="summary">
+            <div class="metric">
+                <div class="metric-label">Repositories Scanned</div>
+                <div class="metric-value">9</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Total Open PRs</div>
+                <div class="metric-value">60</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Stale PRs (>7 days)</div>
+                <div class="metric-value">53</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Very Stale (>14 days)</div>
+                <div class="metric-value">51</div>
+            </div>
+        </div>
+        
+
+        
+        <h2>Status Breakdown</h2>
+        <div class="status-breakdown">
+            <div class="status-item">
+                <span>Approved</span>
+                <span class="status-badge" style="background-color: #27ae60;">1</span>
+            </div>
+            <div class="status-item">
+                <span>Changes Requested</span>
+                <span class="status-badge" style="background-color: #e74c3c;">3</span>
+            </div>
+            <div class="status-item">
+                <span>Waiting for Review</span>
+                <span class="status-badge" style="background-color: #f39c12;">6</span>
+            </div>
+            <div class="status-item">
+                <span>Draft PRs</span>
+                <span class="status-badge" style="background-color: #95a5a6;">3</span>
+            </div>
+            <div class="status-item">
+                <span>No Reviewers Assigned</span>
+                <span class="status-badge" style="background-color: #e67e22;">47</span>
+            </div>
+        </div>
+        
+
+        
+        <h2>Regular Pull Requests (32)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Repository</th>
+                    <th>Pull Request</th>
+                    <th>Author</th>
+                    <th>Age</th>
+                    <th>Status</th>
+                    <th>Reviewers</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr class="very-stale">
+                <td><strong>shipwright-io/triggers</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/triggers/pull/50" class="pr-link" target="_blank">#50</a>
+                        publish image nightly
+                    </div>
+                </td>
+                <td>liangyuanpeng</td>
+                <td class="age-danger">1024 days</td>
+                <td><span class="badge badge-changes">Changes Requested</span></td>
+                <td>👤 otaviof, 👤 sbose78</td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/catalog</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/catalog/pull/51" class="pr-link" target="_blank">#51</a>
+                        RELEASE BLOCKER(March 1, 2025): add fbc-fips-check task to FBC pipeline
+                    </div>
+                </td>
+                <td>yashvardhannanavati</td>
+                <td class="age-danger">370 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/328" class="pr-link" target="_blank">#328</a>
+                        Test to allow only whitelisted registries
+                    </div>
+                </td>
+                <td>psrvere</td>
+                <td class="age-danger">349 days</td>
+                <td><span class="badge badge-draft">Draft</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>shipwright-io/cli</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/cli/pull/313" class="pr-link" target="_blank">#313</a>
+                        fix: replace ptr.To(&quot;&quot;) by new(string)
+                    </div>
+                </td>
+                <td>rxinui</td>
+                <td class="age-danger">302 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 adambkaplan</td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/360" class="pr-link" target="_blank">#360</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-webhook-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/361" class="pr-link" target="_blank">#361</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-waiter-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/362" class="pr-link" target="_blank">#362</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-image-processing-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/363" class="pr-link" target="_blank">#363</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-image-bundler-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/364" class="pr-link" target="_blank">#364</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-git-cloner-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/365" class="pr-link" target="_blank">#365</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-controller-1-3
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/366" class="pr-link" target="_blank">#366</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-webhook-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/367" class="pr-link" target="_blank">#367</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-waiter-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/368" class="pr-link" target="_blank">#368</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-image-processing-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/369" class="pr-link" target="_blank">#369</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-image-bundler-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/370" class="pr-link" target="_blank">#370</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-git-cloner-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/shipwright-io-build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/shipwright-io-build/pull/371" class="pr-link" target="_blank">#371</a>
+                        chore(KONFLUX-6210): fix and set name and cpe label for openshift-builds-controller-1-2
+                    </div>
+                </td>
+                <td>ralphbean</td>
+                <td class="age-danger">160 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>shipwright-io/cli</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/cli/pull/355" class="pr-link" target="_blank">#355</a>
+                        Don&#x27;t skip symlinks during local source upload
+                    </div>
+                </td>
+                <td>dollierp</td>
+                <td class="age-danger">123 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 adambkaplan, 👤 HeavyWombat</td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/693" class="pr-link" target="_blank">#693</a>
+                        [BUILD-1677]: Implement Network Policies for operand components
+                    </div>
+                </td>
+                <td>anchi205</td>
+                <td class="age-danger">104 days</td>
+                <td><span class="badge badge-changes">Changes Requested</span></td>
+                <td>👤 avinal</td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/release</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/release/pull/42" class="pr-link" target="_blank">#42</a>
+                        chore: update konflux pipelines
+                    </div>
+                </td>
+                <td>avinal</td>
+                <td class="age-danger">40 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/catalog</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/catalog/pull/80" class="pr-link" target="_blank">#80</a>
+                        feat: add a github action to generate test catalog
+                    </div>
+                </td>
+                <td>avinal</td>
+                <td class="age-danger">33 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/816" class="pr-link" target="_blank">#816</a>
+                        feat: setup github actions for release prep
+                    </div>
+                </td>
+                <td>avinal</td>
+                <td class="age-danger">33 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>shipwright-io/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/operator/pull/278" class="pr-link" target="_blank">#278</a>
+                        fix[ci]: update create-release action with gh cli
+                    </div>
+                </td>
+                <td>kaizakin</td>
+                <td class="age-danger">31 days</td>
+                <td><span class="badge badge-approved">Approved</span></td>
+                <td>👤 qu1queee</td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/release</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/release/pull/43" class="pr-link" target="_blank">#43</a>
+                        ci: add github action to periodally update the task bundle
+                    </div>
+                </td>
+                <td>avinal</td>
+                <td class="age-danger">26 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>shipwright-io/build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/build/pull/2107" class="pr-link" target="_blank">#2107</a>
+                        Feat: Add corporate certificates to Build APIs
+                    </div>
+                </td>
+                <td>sayan-biswas</td>
+                <td class="age-danger">19 days</td>
+                <td><span class="badge badge-draft">Draft</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="stale">
+                <td><strong>shipwright-io/cli</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/cli/pull/372" class="pr-link" target="_blank">#372</a>
+                        refactor: Use IOStreams for command output instead of os.Stdout and log
+                    </div>
+                </td>
+                <td>kaizakin</td>
+                <td class="age-warning">14 days</td>
+                <td><span class="badge badge-changes">Changes Requested</span></td>
+                <td>👤 adambkaplan, 👤 rxinui</td>
+            </tr>
+            
+
+            <tr class="stale">
+                <td><strong>shipwright-io/cli</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/cli/pull/373" class="pr-link" target="_blank">#373</a>
+                        Bump goreleaser/goreleaser-action from 6 to 7
+                    </div>
+                </td>
+                <td>dependabot[bot]</td>
+                <td class="age-warning">14 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 adambkaplan, 👤 qu1queee</td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/837" class="pr-link" target="_blank">#837</a>
+                        Revert &quot;fix clusterrole binding for upgrade&quot;
+                    </div>
+                </td>
+                <td>sayan-biswas</td>
+                <td class="">7 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/838" class="pr-link" target="_blank">#838</a>
+                        Delete redundant role
+                    </div>
+                </td>
+                <td>sayan-biswas</td>
+                <td class="">7 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>shipwright-io/build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/build/pull/2127" class="pr-link" target="_blank">#2127</a>
+                        feat: Add API in Shipwright for multi-arch build
+                    </div>
+                </td>
+                <td>anchi205</td>
+                <td class="">4 days</td>
+                <td><span class="badge badge-draft">Draft</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>shipwright-io/build</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/build/pull/2131" class="pr-link" target="_blank">#2131</a>
+                        Refactor[Tests]: Use ginkgo labels to differentiate PipelinRun tests from TaskRun tests
+                    </div>
+                </td>
+                <td>kaizakin</td>
+                <td class="">2 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 dorzel, 👤 SaschaSchwarze0, 👤 adambkaplan <em>+1 more</em></td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>shipwright-io/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/operator/pull/283" class="pr-link" target="_blank">#283</a>
+                        Update go dependencies for 0.19 release
+                    </div>
+                </td>
+                <td>hasanawad94</td>
+                <td class="">1 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 otaviof, 👤 adambkaplan, 👤 sayan-biswas</td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>shipwright-io/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/shipwright-io/operator/pull/285" class="pr-link" target="_blank">#285</a>
+                        fix: Replace deprecated kube-rbac-proxy with built-in metrics auth
+                    </div>
+                </td>
+                <td>IrvingMg</td>
+                <td class="">1 days</td>
+                <td><span class="badge badge-review-requested">Review Requested</span></td>
+                <td>👤 adambkaplan, 👤 ayushsatyam146, 👤 hasanawad94</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+
+        <h2>Konflux Nudge PRs (28)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Repository</th>
+                    <th>Pull Request</th>
+                    <th>Author</th>
+                    <th>Age</th>
+                    <th>Status</th>
+                    <th>Reviewers</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/555" class="pr-link" target="_blank">#555</a>
+                        Red Hat Konflux purge openshift-builds-operator
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">186 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/684" class="pr-link" target="_blank">#684</a>
+                        chore(deps): update module github.com/tektoncd/pipeline to v1.10.0
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">122 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/734" class="pr-link" target="_blank">#734</a>
+                        chore(deps): update go-openapi packages
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">95 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/735" class="pr-link" target="_blank">#735</a>
+                        chore(deps): update module github.com/spf13/cobra to v1.10.2
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">95 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/736" class="pr-link" target="_blank">#736</a>
+                        chore(deps): update github.com/openshift/api digest to 0608f61
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/737" class="pr-link" target="_blank">#737</a>
+                        chore(deps): update module golang.org/x/oauth2 to v0.36.0
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/738" class="pr-link" target="_blank">#738</a>
+                        chore(deps): update module golang.org/x/time to v0.15.0
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/739" class="pr-link" target="_blank">#739</a>
+                        chore(deps): update module golang.org/x/tools to v0.42.0
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/740" class="pr-link" target="_blank">#740</a>
+                        chore(deps): update module google.golang.org/api to v0.269.0
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/741" class="pr-link" target="_blank">#741</a>
+                        chore(deps): update module google.golang.org/grpc to v1.79.2
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">94 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/742" class="pr-link" target="_blank">#742</a>
+                        chore(deps): update github.com/openshift/client-go digest to 3935d92
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">93 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/743" class="pr-link" target="_blank">#743</a>
+                        chore(deps): update module sigs.k8s.io/kustomize/api to v0.21.1
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">93 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/744" class="pr-link" target="_blank">#744</a>
+                        chore(deps): update module sigs.k8s.io/kustomize/cmd/config to v0.21.1
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">93 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/745" class="pr-link" target="_blank">#745</a>
+                        chore(deps): update module sigs.k8s.io/kustomize/kyaml to v0.21.1
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">93 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/749" class="pr-link" target="_blank">#749</a>
+                        fix(deps): update module sigs.k8s.io/controller-runtime to v0.23.3
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">93 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/750" class="pr-link" target="_blank">#750</a>
+                        fix(deps): update module sigs.k8s.io/controller-tools to v0.20.1
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">92 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/751" class="pr-link" target="_blank">#751</a>
+                        chore(deps): update module github.com/hashicorp/golang-lru to v2
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">92 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/752" class="pr-link" target="_blank">#752</a>
+                        chore(deps): update github.com/google/pprof digest to a15ffb7
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">92 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/753" class="pr-link" target="_blank">#753</a>
+                        fix(deps): update module sigs.k8s.io/kustomize/kustomize/v5 to v5.8.1
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">92 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/754" class="pr-link" target="_blank">#754</a>
+                        chore(deps): update module go.yaml.in/yaml/v2 to v3
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">91 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/755" class="pr-link" target="_blank">#755</a>
+                        chore(deps): update module gomodules.xyz/jsonpatch/v2 to v3
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">91 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/756" class="pr-link" target="_blank">#756</a>
+                        fix(deps): update sigs.k8s.io/controller-runtime/tools/setup-envtest digest to 105baa6
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">88 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/758" class="pr-link" target="_blank">#758</a>
+                        chore(deps): update google.golang.org/genproto/googleapis/api digest to a57be14
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">83 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/770" class="pr-link" target="_blank">#770</a>
+                        chore(deps): update google.golang.org/genproto/googleapis/rpc digest to a57be14
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">66 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/775" class="pr-link" target="_blank">#775</a>
+                        chore(deps): update openshift-builds-shared-resource-1-6 to f67cb13
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">40 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/778" class="pr-link" target="_blank">#778</a>
+                        chore(deps): update openshift-builds-shared-resource-webhook to dd7e913
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">40 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="very-stale">
+                <td><strong>redhat-openshift-builds/catalog</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/catalog/pull/86" class="pr-link" target="_blank">#86</a>
+                        Red Hat Konflux purge openshift-builds-fbc-4-12
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="age-danger">25 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+
+            <tr class="">
+                <td><strong>redhat-openshift-builds/operator</strong></td>
+                <td>
+                    <div class="pr-title">
+                        <a href="https://github.com/redhat-openshift-builds/operator/pull/845" class="pr-link" target="_blank">#845</a>
+                        chore(deps): update openshift-builds-waiter to b6125c8
+                    </div>
+                </td>
+                <td>red-hat-konflux[bot]</td>
+                <td class="">0 days</td>
+                <td><span class="badge badge-no-reviewers">No Reviewers</span></td>
+                <td><em style="color: #95a5a6;">None</em></td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+
+        <div class="footer">
+            <p>This report was automatically generated by PR Reporter</p>
+        </div>
+    </div>
+</body>
+</html>
